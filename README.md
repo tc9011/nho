@@ -1,5 +1,7 @@
 # Nho
 
+[![Build Status](https://travis-ci.org/tc9011/nho.svg?branch=master)](https://travis-ci.org/tc9011/nho)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
 ## Development server
