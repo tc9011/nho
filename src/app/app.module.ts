@@ -1,33 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { CampListComponent } from './camp-list/camp-list.component';
-import { CampComponent } from './camp/camp.component';
-import { MyCampComponent } from './my-camp/my-camp.component';
-import { CampDetailsComponent } from './camp-details/camp-details.component';
+import { LayoutsModule } from './layouts/layouts.module';
+import { PagesModule } from './pages/pages.module';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
     AppComponent,
-    CampListComponent,
-    CampComponent,
-    MyCampComponent,
-    CampDetailsComponent,
   ],
   imports: [
+    LayoutsModule,
+    PagesModule,
+    SharedModule,
     BrowserModule,
-    AppRoutingModule,
-    NgZorroAntdModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
