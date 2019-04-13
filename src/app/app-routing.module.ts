@@ -19,7 +19,7 @@ const routes: Routes = [
         component: CampListComponent,
       },
       {
-        path: 'campDetails',
+        path: 'campDetails/:id',
         component: CampDetailsComponent,
       },
     ],

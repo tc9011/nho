@@ -7,25 +7,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class HttpService {
-  ip: string;
+  prefix: string;
 
   constructor(private http: HttpClient) {
-    this.ip = '';
+    this.prefix = '/api/v1';
   }
 
   public getData(api: string, options = {}): Observable<any> {
-    return this.http.get(this.ip + api);
+    return this.http.get(this.prefix + api);
   }
 
   public postData(api: string, data: any, options = {}): Observable<any> {
-    return this.http.post(this.ip + api, data);
+    return this.http.post(this.prefix + api, data);
   }
 
   public deleteData(api: string, options = {}): Observable<any> {
-    return this.http.delete(this.ip + api);
+    return this.http.delete(this.prefix + api);
   }
 
   public putData(api: string, data: any, options = {}): Observable<any> {
-    return this.http.put(this.ip + api, data);
+    return this.http.put(this.prefix + api, data);
   }
 }

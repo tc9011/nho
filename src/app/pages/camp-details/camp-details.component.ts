@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../core/http.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-camp-details',
@@ -8,15 +9,20 @@ import { HttpService } from '../../core/http.service';
 })
 export class CampDetailsComponent implements OnInit {
 
-  constructor(private httpService: HttpService) {
+  constructor(
+    private httpService: HttpService,
+    private route: ActivatedRoute,
+  ) {
   }
 
   ngOnInit() {
+    this.getDetail();
   }
 
-  get() {
-    this.httpService.getData('/detail').subscribe(
-      data => {
+  getDetail() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.httpService.getData(`/camp/${id}`).subscribe(
+      res => {
 
       },
       error => {
