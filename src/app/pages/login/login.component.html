@@ -1,0 +1,13 @@
+<div class="login-area">
+  <h2>
+    欢迎来到思沃学院在线学习
+  </h2>
+
+
+  <form class="form-area" nz-form (ngSubmit)="submitForm()">
+    <input class="name" type="text" name="name" nz-input placeholder="用户名" [(ngModel)]="userData.user"/>
+    <input class="password" type="password" name="password" nz-input placeholder="密码" [(ngModel)]="userData.pass"/>
+    <button nz-button nzType="primary">登录</button>
+  </form>
+</div>
+

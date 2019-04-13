@@ -6,6 +6,7 @@ import { CampComponent } from './camp/camp.component';
 import { MyCampComponent } from './my-camp/my-camp.component';
 import { CampDetailsComponent } from './camp-details/camp-details.component';
 import { SharedModule } from '../shared/shared.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
     CampComponent,
     MyCampComponent,
     CampDetailsComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../core/http.service';
 import { NzMessageService } from 'ng-zorro-antd';
+import { HttpHeaders } from '@angular/common/http';
+import { StorageService } from '../../core/storage.service';
 
 export interface ICampList {
   id: number;
@@ -18,6 +20,7 @@ export class CampComponent implements OnInit {
   constructor(
     public httpService: HttpService,
     private message: NzMessageService,
+    private storageService: StorageService,
   ) {
     this.campList = [];
   }
@@ -27,11 +30,15 @@ export class CampComponent implements OnInit {
   }
 
   getList() {
-    this.httpService.getData('/camp/list').subscribe(
+    const token = JSON.parse(this.storageService.getLocalStorage('token'));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: token,
+      }),
+    };
+    this.httpService.getData('/camp/list', httpOptions).subscribe(
       res => {
-        if (res.status === 'OK') {
-          this.campList = res.data;
-        }
+        this.campList = res;
       },
       error => {
         this.message.error(error);

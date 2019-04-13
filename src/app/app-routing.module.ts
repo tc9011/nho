@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CampListComponent } from './pages/camp-list/camp-list.component';
 import { CampDetailsComponent } from './pages/camp-details/camp-details.component';
 import { GlobalComponent } from './layouts/global/global.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/campList',
+        redirectTo: '/login',
         pathMatch: 'full',
       },
       {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'campDetails/:id',
         component: CampDetailsComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
       },
     ],
   }
