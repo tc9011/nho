@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../core/http.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd';
 
 interface IDetail {
   createdAt: string;
@@ -9,6 +10,7 @@ interface IDetail {
   image_url: string;
   name: string;
   updatedAt: string;
+  submitted: boolean;
 }
 
 @Component({
@@ -18,10 +20,13 @@ interface IDetail {
 })
 export class CampDetailsComponent implements OnInit {
   campDetail: IDetail;
+  id: string;
 
   constructor(
     private httpService: HttpService,
     private route: ActivatedRoute,
+    private router: Router,
+    private message: NzMessageService,
   ) {
     this.campDetail = {
       createdAt: '',
@@ -30,7 +35,9 @@ export class CampDetailsComponent implements OnInit {
       image_url: '',
       name: '',
       updatedAt: '',
+      submitted: false,
     };
+    this.id = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
@@ -38,13 +45,18 @@ export class CampDetailsComponent implements OnInit {
   }
 
   getDetail() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.httpService.getData(`/camp/${id}`).subscribe(
+    this.httpService.getData(`/camp/${this.id}`).subscribe(
       res => {
         this.campDetail = res;
-      },
-      error => {
+      }
+    );
+  }
 
+  submit() {
+    this.httpService.postData(`/camp/${this.id}/submit`, {}).subscribe(
+      () => {
+        this.message.success('提交成功');
+        this.router.navigate(['/campList']);
       },
     );
   }

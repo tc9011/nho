@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../core/http.service';
-import { NzMessageService } from 'ng-zorro-antd';
 import { HttpHeaders } from '@angular/common/http';
 import { StorageService } from '../../core/storage.service';
 
@@ -19,7 +18,6 @@ export class CampComponent implements OnInit {
 
   constructor(
     public httpService: HttpService,
-    private message: NzMessageService,
     private storageService: StorageService,
   ) {
     this.campList = [];
@@ -39,10 +37,7 @@ export class CampComponent implements OnInit {
     this.httpService.getData('/camp/list', httpOptions).subscribe(
       res => {
         this.campList = res;
-      },
-      error => {
-        this.message.error(error);
-      },
+      }
     );
   }
 }

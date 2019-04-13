@@ -12,6 +12,13 @@
     {{campDetail.description}}
   </p>
 
-  <button class="btn" nz-button nzType="primary">Submit</button>
+  <button
+    [disabled]="campDetail.submitted"
+    class="btn"
+    nz-button nzType="primary"
+    (click)="submit()"
+  >
+    Submit
+  </button>
 </div>
 
