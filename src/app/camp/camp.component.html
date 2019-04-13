@@ -1,0 +1,18 @@
+<nz-table #basicTable [nzData]="campList">
+  <thead>
+  <tr>
+    <th>No.</th>
+    <th>Title</th>
+    <th>Operation</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{data.id}}</td>
+    <td>{{data.name}}</td>
+    <td>
+      <a routerLink="/campDetails">View Details</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

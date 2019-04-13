@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://10.208.20.26:3000/camp",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}
