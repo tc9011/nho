@@ -16,7 +16,6 @@ export interface IUser {
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  userData: IUser;
   form: FormGroup
 
   constructor(
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.form = fb.group({
       user: [null, Validators.required],
       pass: [null, Validators.required],
-    })
+    });
   }
 
   ngOnInit(): void {
