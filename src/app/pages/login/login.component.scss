@@ -9,10 +9,15 @@ h2 {
   color: #25b3ff;
 }
 
-.name, .password, h2 {
+h2 {
   margin-bottom: 50px;
 }
 
 .name, .password {
+  display: block;
   width: 300px;
+}
+
+.required-mark {
+  color: red;
 }

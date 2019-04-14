@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../core/http.service';
-import { HttpHeaders } from '@angular/common/http';
-import { StorageService } from '../../core/storage.service';
 
 export interface ICampList {
   id: number;
@@ -18,7 +16,6 @@ export class CampComponent implements OnInit {
 
   constructor(
     public httpService: HttpService,
-    private storageService: StorageService,
   ) {
     this.campList = [];
   }
@@ -28,13 +25,7 @@ export class CampComponent implements OnInit {
   }
 
   getList() {
-    const token = JSON.parse(this.storageService.getLocalStorage('token'));
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: token,
-      }),
-    };
-    this.httpService.getData('/camp/list', httpOptions).subscribe(
+    this.httpService.getData('/camp/list').subscribe(
       res => {
         this.campList = res;
       }

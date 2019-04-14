@@ -12,6 +12,8 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 import { InterceptorService } from './core/interceptor.service';
+import { AuthGuardLogin } from './core/auth-guard.service';
+import { AuthService } from './core/auth.service';
 
 registerLocaleData(zh);
 
@@ -31,6 +33,8 @@ registerLocaleData(zh);
   providers: [
     {provide: NZ_I18N, useValue: zh_CN},
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    AuthGuardLogin,
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })

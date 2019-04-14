@@ -4,16 +4,50 @@
   </h2>
 
 
-  <form class="form-area" nz-form (ngSubmit)="submitForm()">
-    <label class="name">
-      用户名
-      <input type="text" name="name" nz-input [(ngModel)]="userData.user"/>
-    </label>
-    <label class="password">
-      密码
-      <input type="password" name="password" nz-input [(ngModel)]="userData.pass"/>
-    </label>
-    <button nz-button nzType="primary">登录</button>
+  <form class="form-area" nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+    <!--用户名-->
+    <nz-form-item>
+      <nz-form-control>
+        <label for="name"><span class="required-mark">*</span>用户名</label>
+        <nz-input-group class="name" nzSize="large" [nzPrefix]="prefixUser">
+          <input
+            id="name"
+            type="text"
+            name="name"
+            nz-input
+            formControlName="user"
+          />
+        </nz-input-group>
+        <ng-container *ngIf="form.get('user')?.dirty && form.get('user')?.errors">
+          <nz-form-explain *ngIf="form.get('user')?.errors.required">请输入用户名！</nz-form-explain>
+        </ng-container>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!--密码-->
+    <nz-form-item>
+      <nz-form-control>
+        <label for="password"><span class="required-mark">*</span>密码</label>
+        <nz-input-group class="password" nzSize="large" [nzPrefix]="prefixLock">
+          <input
+            id="password"
+            type="password"
+            name="password"
+            nz-input
+            formControlName="pass"
+          />
+        </nz-input-group>
+        <nz-form-explain *ngIf="form.get('pass')?.dirty && form.get('pass')?.errors">
+          请输入密码！
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <button nz-button nzType="primary">登录</button>
+    </nz-form-item>
   </form>
+  <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+  <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
 </div>
 
