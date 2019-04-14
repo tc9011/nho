@@ -31,10 +31,12 @@ export class InterceptorService implements HttpInterceptor {
     return this.injector.get(NzMessageService);
   }
 
+  // TODO 删除
   private goTo(url: string): void {
     setTimeout(() => this.injector.get(Router).navigateByUrl(url));
   }
 
+  // TODO 删除注释
   private handleData(
     event: HttpResponse<any> | HttpErrorResponse,
   ): Observable<any> {
@@ -42,7 +44,7 @@ export class InterceptorService implements HttpInterceptor {
       if (event instanceof HttpResponse) {
         const body: any = event.body;
         if (body && body.status !== 'OK') {
-          this.msg.error(body.data);
+          this.msg.error(body.error);
           // 继续抛出错误中断后续所有 Pipe、subscribe 操作，因此：
           // this.http.get('/').subscribe() 并不会触发
           return throwError({});
@@ -59,7 +61,7 @@ export class InterceptorService implements HttpInterceptor {
           '未可知错误，大部分是由于后端不支持CORS或无效配置引起',
           event,
         );
-        this.msg.error(event.error.message);
+        this.msg.error(event.error);
       }
     }
     return of(event);
