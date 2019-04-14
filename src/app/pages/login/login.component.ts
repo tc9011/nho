@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../core/http.service';
 import { StorageService } from '../../core/storage.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../../core/auth.service'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { AuthService } from '../../core/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export interface IUser {
   user: string;
@@ -16,7 +16,7 @@ export interface IUser {
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup
+  form: FormGroup;
 
   constructor(
     private httpService: HttpService,
@@ -37,18 +37,18 @@ export class LoginComponent implements OnInit {
   submitForm(): void {
     for (const i in this.form.controls) {
       if (this.form.controls.hasOwnProperty(i)) {
-        this.form.controls[i].markAsDirty()
-        this.form.controls[i].updateValueAndValidity()
+        this.form.controls[i].markAsDirty();
+        this.form.controls[i].updateValueAndValidity();
       }
     }
 
     if (this.form.invalid) {
-      return
+      return;
     }
 
     this.authService.login(this.form.value).subscribe(
       () => {
-        this.router.navigate(['/campList'])
+        this.router.navigate(['/campList']);
       },
     );
   }
